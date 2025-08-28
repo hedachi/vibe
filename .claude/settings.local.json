@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Read(/Users/hedachi/bin/**)"
+      "Read(/Users/hedachi/bin/**)",
+      "mcp__serena__list_dir",
+      "Read(/Users/hedachi/vscode-random-color/**)",
+      "Read(/Users/hedachi/vscode-random-color/**)",
+      "Read(/Users/hedachi/vscode-random-color/**)"
     ],
     "deny": [],
     "ask": []
