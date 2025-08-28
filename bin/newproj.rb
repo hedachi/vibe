@@ -54,15 +54,27 @@ slug = Time.now.strftime("%Y%m%d-%H%M%S") + "-" + prompt.gsub(/[^\p{Alnum}\-_. ]
 dir  = File.join(base, slug)
 FileUtils.mkdir_p(dir)
 
-# READMEに指示を保存（任意）
-File.write(File.join(dir, "README.md"), "# #{prompt}\n\n初回プロンプト: #{prompt}\n")
+# 実装計画.mdに指示を保存
+File.write(File.join(dir, "実装計画.md"), <<~MD)
+  # 実装計画
+
+  ## 初回プロンプト
+  #{prompt}
+
+  ## タスク
+  以下の要件を実装してください：
+  - #{prompt}
+
+  ## 実装方針
+  上記の要件を満たすために、適切な実装を行ってください。
+MD
 
 # VS Codeの自動タスク設定
 tasks_dir = File.join(dir, ".vscode")
 FileUtils.mkdir_p(tasks_dir)
 
 # Claude Codeコマンド構築
-cmd = %(claude "#{prompt.gsub('"','\"')}" --permission-mode plan)
+cmd = %(claude "実装計画.mdを読んで、そこに記載されている要件を実装してください。")
 # 必要に応じてツール許可を追加
 # cmd += %( --allowedTools "Bash" "Read" "Edit" "Write")
 
