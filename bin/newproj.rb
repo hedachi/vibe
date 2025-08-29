@@ -21,9 +21,8 @@ check_and_run_cmd = <<~SCRIPT
 if [ ! -f ".vscode/.kickoff_done" ]; then
   claude "「#{prompt.gsub('"','\"')}」という要件について、詳細な実装計画を立てて実装計画.mdファイルに書いてください。その後、その計画に従って実装してください。"
   touch .vscode/.kickoff_done
-  echo "Initial kickoff completed."
 else
-  echo "Kickoff already executed. Skipping..."
+  claude
 fi
 SCRIPT
 
